@@ -8,7 +8,7 @@ public class Paragraph extends AbstractListedMarkup {
         super(list);
     }
 
-    Paragraph(String s) {
+    public Paragraph(String s) {
         super(s);
     }
 

@@ -92,11 +92,13 @@ abstract public class AbstractListedMarkup implements MarkupText {
     }
 
     private boolean isDoubleChar(String s, int i, char c) {
-        return (s.charAt(i) == c && (i == 0 || (s.charAt(i - 1) != c && s.charAt(i - 1) != '\\')) && (i + 1 < s.length() || s.charAt(i + 1) == c));
+        return (s.charAt(i) == c && (i == 0 || (s.charAt(i - 1) != c && s.charAt(i - 1) != '\\'))
+                && (i + 1 < s.length() || s.charAt(i + 1) == c));
     }
 
     private boolean isSingleChar(String s, int i, char c) {
-        return (s.charAt(i) == c && (i == 0 || (s.charAt(i - 1) != c && s.charAt(i - 1) != '\\')) && (i == s.length() - 1 || s.charAt(i + 1) != c));
+        return (s.charAt(i) == c && (i == 0 || (s.charAt(i - 1) != c && s.charAt(i - 1) != '\\'))
+                && (i == s.length() - 1 || s.charAt(i + 1) != c));
     }
 
     public void toMarkdown(StringBuilder sb, String sign) {
