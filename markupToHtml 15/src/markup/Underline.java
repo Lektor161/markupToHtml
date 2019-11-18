@@ -2,8 +2,8 @@ package markup;
 
 import java.util.List;
 
-public class Underline extends AbstractListedMarkup implements inParagraph {
-    Underline(List<inParagraph> elements) {
+public class Underline extends AbstractListedMarkup implements InParagraph {
+    Underline(List<InParagraph> elements) {
         super(elements);
     }
 

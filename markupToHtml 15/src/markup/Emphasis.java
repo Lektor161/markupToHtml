@@ -2,9 +2,9 @@ package markup;
 
 import java.util.List;
 
-public class Emphasis extends AbstractListedMarkup implements inParagraph {
+public class Emphasis extends AbstractListedMarkup implements InParagraph {
 
-    Emphasis(List<inParagraph> list) {
+    Emphasis(List<InParagraph> list) {
         super(list);
     }
 

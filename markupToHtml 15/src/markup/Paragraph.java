@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Paragraph extends AbstractListedMarkup {
 
-    Paragraph(List<inParagraph> list) {
+    Paragraph(List<InParagraph> list) {
         super(list);
     }
 

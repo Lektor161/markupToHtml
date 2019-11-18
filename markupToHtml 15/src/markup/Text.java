@@ -1,6 +1,6 @@
 package markup;
 
-public class Text implements inParagraph {
+public class Text implements InParagraph {
     String text;
 
     Text(String text) {

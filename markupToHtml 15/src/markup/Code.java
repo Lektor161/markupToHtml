@@ -1,6 +1,6 @@
 package markup;
 
-public class Code extends AbstractListedMarkup implements inParagraph {
+public class Code extends AbstractListedMarkup implements InParagraph {
     public Code(String s) {
         super(s);
     }

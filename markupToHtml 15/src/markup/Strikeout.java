@@ -2,8 +2,8 @@ package markup;
 
 import java.util.List;
 
-public class Strikeout extends AbstractListedMarkup implements inParagraph {
-    Strikeout(List<inParagraph> list) {
+public class Strikeout extends AbstractListedMarkup implements InParagraph {
+    Strikeout(List<InParagraph> list) {
         super(list);
     }
 

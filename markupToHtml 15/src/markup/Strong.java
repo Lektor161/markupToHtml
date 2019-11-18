@@ -2,8 +2,8 @@ package markup;
 
 import java.util.List;
 
-public class Strong extends AbstractListedMarkup implements inParagraph {
-    Strong(List<inParagraph> list) {
+public class Strong extends AbstractListedMarkup implements InParagraph {
+    Strong(List<InParagraph> list) {
         super(list);
     }
 

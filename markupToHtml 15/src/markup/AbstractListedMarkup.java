@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract public class AbstractListedMarkup implements MarkupText {
-    private List<inParagraph> elements;
+    private List<InParagraph> elements;
 
-    AbstractListedMarkup(List<inParagraph> elements) {
+    AbstractListedMarkup(List<InParagraph> elements) {
         this.elements = elements;
     }
 
@@ -60,6 +60,7 @@ abstract public class AbstractListedMarkup implements MarkupText {
                 }
             }
 
+            //костыль для M3135
             if (isDoubleChar(s, i, '+')) {
                 int j = nextDoubleChar(s, i + 1, s.charAt(i));
                 if (j != s.length()) {
@@ -71,9 +72,43 @@ abstract public class AbstractListedMarkup implements MarkupText {
                 }
             }
 
+            //костыль для M3138
+            if (isSingleChar(s, i, '!') && i + 1 < s.length() && isSingleChar(s, i + 1, '[')) {
+                elements.add(new Text(sb.toString()));
+                sb = new StringBuilder();
+                int j = nextSingleChar(s, i + 1, ']');
+                String name = s.substring(i + 2, j);
+                i = j + 1;
+                j = nextSingleChar(s, i + 1, ')');
+                String link = s.substring(i + 1, j);
+                elements.add(new Image(name, link));
+                i = j + 1;
+                continue;
+            }
+
+            //костыль для M3139
+            if (isSingleChar(s, i, '[')) {
+                int j = nextSingleChar(s, i + 1, ']');
+                if (j != s.length()) {
+                    elements.add(new Text(sb.toString()));
+                    sb = new StringBuilder();
+                    String name = s.substring(i + 1, j);
+                    i = j + 1;
+                    j = nextSingleChar(s, i + 1, ')');
+                    String link = s.substring(i + 1, j);
+                    elements.add(new Link(name, link));
+                    i = j + 1;
+                    continue;
+                }
+            }
+
+
             sb.append(s.charAt(i));
             i++;
         }
+
+
+
         elements.add(new Text(sb.toString()));
     }
 
@@ -103,7 +138,7 @@ abstract public class AbstractListedMarkup implements MarkupText {
 
     public void toMarkdown(StringBuilder sb, String sign) {
         sb.append(sign);
-        for (inParagraph text : elements) {
+        for (InParagraph text : elements) {
             text.toMarkdown(sb);
         }
         sb.append(sign);
@@ -111,7 +146,7 @@ abstract public class AbstractListedMarkup implements MarkupText {
 
     public void toHtml(StringBuilder sb, String firstSign, String lastSign) {
         sb.append(firstSign);
-        for (inParagraph text : elements) {
+        for (InParagraph text : elements) {
             text.toHtml(sb);
         }
         sb.append(lastSign);
